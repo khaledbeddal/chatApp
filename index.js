@@ -1,7 +1,6 @@
 var express = require("express");
 var socket = require("socket.io");
 
-
 var application = express();
 var server = application.listen(3000, function () {
   console.log("Server Is Running at http:/localhost:3000");
@@ -31,6 +30,10 @@ sio.on("connection", function (visitor) {
 
   visitor.on("broad_cast", function (data) {
     visitor.broadcast.emit("new_broad_cast", data);
+  });
+
+  visitor.on("message_deleted", function (data) {
+    sio.sockets.emit("message_deleted", data);
   });
 
   sio.on("disconnect", () => {

@@ -24,13 +24,14 @@ send.addEventListener("click", function () {
       timestamp: time,
     });
   } else {
-    alert("Empty data!");
+    toastr.error("Empty Data!");
   }
 });
 
 message.addEventListener("keypress", function () {
   socket.emit("broad_cast", {
     username: username.value,
+    recipient: recipient.value,
   });
 });
 
@@ -68,9 +69,27 @@ socket.on("new_msg", function (data) {
 });
 
 socket.on("new_broad_cast", function (data) {
-  broadcast.innerHTML = `
-    <strong>${data.username} : </strong>
-      write message
-      <img src="write.gif" style="width: 25px; height: 20px" />
-    `;
+  var currentUserID = document.getElementById("username").value;
+
+  if (data.recipient === currentUserID || data.recipient === "general") {
+    broadcast.innerHTML = `
+      <strong>${data.username} : </strong>
+        write message
+        <img src="write.gif" style="width: 25px; height: 20px" />
+      `;
+  } else {
+    broadcast.innerHTML = "";
+  }
+});
+
+var msg = document.getElementById("message");
+msg.addEventListener("keyup", function (event) {
+  var message = msg.value.trim();
+  if (message === "") {
+    socket.emit("message_deleted", {});
+  }
+});
+
+socket.on("message_deleted", function (data) {
+  broadcast.innerHTML = "";
 });

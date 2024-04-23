@@ -4,11 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
+
+    <!-- socket.io Link  -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.js"></script>
-    <link
-      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
-      rel="stylesheet"
-    />
+    <!-- boxicons Link  -->
     <link
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
       rel="stylesheet"
@@ -20,11 +19,8 @@
       href="https://fonts.googleapis.com/css2?family=Pathway+Extreme:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&family=Poppins:wght@100&family=Work+Sans:wght@600&display=swap"
       rel="stylesheet"
     />
-
-    <link href="toastr.css" rel="stylesheet" />
-    <script src="toastr.js"></script>
-
     <title>ChatApp</title>
+    <link rel="icon" type="image/x-icon" href="./logo.png" />
   </head>
   <body>
     <div class="logo">
@@ -80,9 +76,23 @@
         </div>
       </div>
 
-      <script>
-        toastr.info("Are you the 6 fingered man?");
+      <!-- toastr -->
+      <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+      <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css"
+        rel="stylesheet"
+      />
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
+
+      <script type="text/javascript">
+        $(document).ready(function () {
+          toastr.options.timeOut = 2000;
+          toastr.info("Page Loaded!");
+        });
       </script>
+      <!-- /toastr/ -->
       <script src="client.js"></script>
     </div>
   </body>
