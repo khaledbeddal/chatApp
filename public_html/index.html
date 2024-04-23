@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.js"></script>
+    <link
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <!-- Font  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pathway+Extreme:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&family=Poppins:wght@100&family=Work+Sans:wght@600&display=swap"
+      rel="stylesheet"
+    />
+    <title>ChatApp</title>
+  </head>
+  <body>
+    <div class="logo">
+      <h1 class="logo-text">ChatApp<i class="bx bx-message-dots"></i></h1>
+    </div>
+    <div class="app">
+      <div id="chat">
+        <div class="container own-message">
+          <img
+            src="profile_pic.png"
+            class="right"
+            alt="Avatar"
+            class="right"
+            style="width: 100%"
+          />
+          <div class="info">
+            <strong class="username-text-right">Ahmed yacine</strong>
+            <p>hello</p>
+            <span class="time-left">11:01</span>
+          </div>
+        </div>
+        <div class="container other-message">
+          <img src="profile_pic.png" alt="Avatar" style="width: 100%" />
+          <div class="info">
+            <strong class="username-text-left">Boudali Riyad</strong>
+            <p>Hi!</p>
+            <span class="time-right">11:01</span>
+          </div>
+        </div>
+      </div>
+      <div id="broadcast"></div>
+      <div class="container message-box">
+        Username
+        <input
+          placeholder="username"
+          class="input-style"
+          id="username"
+          type="text"
+        />
+
+        <br />
+        <br />
+        <!-- <textarea name="message" id="message" placeholder="message"></textarea> -->
+
+        <div class="grp">
+          <input
+            placeholder="message"
+            class="input-style"
+            id="message"
+            type="text"
+            style="width: 100%"
+          />
+          <!-- <br /> -->
+
+          <button id="send">
+            <span class="span-mother">
+              <span>S</span>
+              <span>E</span>
+              <span>N</span>
+              <span>D</span>
+            </span>
+            <span class="span-mother2">
+              <span>S</span>
+              <span>E</span>
+              <span>N</span>
+              <span>D</span>
+            </span>
+          </button>
+        </div>
+
+        <!-- <button value="send" id="send">Send</button> -->
+      </div>
+
+      <script src="client.js"></script>
+    </div>
+  </body>
+</html>
