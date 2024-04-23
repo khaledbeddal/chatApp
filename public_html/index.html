@@ -20,6 +20,10 @@
       href="https://fonts.googleapis.com/css2?family=Pathway+Extreme:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&family=Poppins:wght@100&family=Work+Sans:wght@600&display=swap"
       rel="stylesheet"
     />
+
+    <link href="toastr.css" rel="stylesheet" />
+    <script src="toastr.js"></script>
+
     <title>ChatApp</title>
   </head>
   <body>
@@ -27,43 +31,27 @@
       <h1 class="logo-text">ChatApp<i class="bx bx-message-dots"></i></h1>
     </div>
     <div class="app">
-      <div id="chat">
-        <div class="container own-message">
-          <img
-            src="profile_pic.png"
-            class="right"
-            alt="Avatar"
-            class="right"
-            style="width: 100%"
-          />
-          <div class="info">
-            <strong class="username-text-right">Ahmed yacine</strong>
-            <p>hello</p>
-            <span class="time-left">11:01</span>
-          </div>
-        </div>
-        <div class="container other-message">
-          <img src="profile_pic.png" alt="Avatar" style="width: 100%" />
-          <div class="info">
-            <strong class="username-text-left">Boudali Riyad</strong>
-            <p>Hi!</p>
-            <span class="time-right">11:01</span>
-          </div>
-        </div>
-      </div>
+      <div id="chat"></div>
       <div id="broadcast"></div>
       <div class="container message-box">
-        Username
-        <input
-          placeholder="username"
-          class="input-style"
-          id="username"
-          type="text"
-        />
+        <div class="grp grp2">
+          Username
+          <input
+            placeholder="username"
+            class="input-style"
+            id="username"
+            type="text"
+          />
+          Send To
+          <select id="recipient" class="input-style">
+            <option value="general">General</option>
+            <option value="user1">user1</option>
+            <option value="user2">user2</option>
+            <option value="user3">user3</option>
+          </select>
+        </div>
 
         <br />
-        <br />
-        <!-- <textarea name="message" id="message" placeholder="message"></textarea> -->
 
         <div class="grp">
           <input
@@ -90,10 +78,11 @@
             </span>
           </button>
         </div>
-
-        <!-- <button value="send" id="send">Send</button> -->
       </div>
 
+      <script>
+        toastr.info("Are you the 6 fingered man?");
+      </script>
       <script src="client.js"></script>
     </div>
   </body>

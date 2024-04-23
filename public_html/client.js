@@ -1,16 +1,31 @@
 var socket = io.connect("http://localhost:3000");
 
-var username = document.getElementById("username");
-var message = document.getElementById("message");
 var send = document.getElementById("send");
 var chat = document.getElementById("chat");
 var broadcast = document.getElementById("broadcast");
+var recipient = document.getElementById("recipient");
 
 send.addEventListener("click", function () {
-  socket.emit("message", {
-    username: username.value,
-    message: message.value,
-  });
+  var selectedRecipient = recipient.value;
+  var message = document.getElementById("message");
+  var username = document.getElementById("username");
+
+  if (message.value !== "" && username.value !== "") {
+    var timestamp = new Date();
+    var time = timestamp.toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+
+    socket.emit("message", {
+      username: username.value,
+      message: message.value,
+      recipient: selectedRecipient,
+      timestamp: time,
+    });
+  } else {
+    alert("Empty data!");
+  }
 });
 
 message.addEventListener("keypress", function () {
@@ -22,6 +37,8 @@ message.addEventListener("keypress", function () {
 socket.on("new_msg", function (data) {
   broadcast.innerHTML = "";
 
+  var currentUserID = document.getElementById("username").value;
+
   if (data.username === username.value) {
     message.value = "";
     chat.innerHTML += `
@@ -30,22 +47,23 @@ socket.on("new_msg", function (data) {
           <div class="info">
           <strong class="username-text-right">${data.username}</strong>
           <p >${data.message}</p>
-          <span class="time-left">11:01</span>
+          <span class="time-left">${data.timestamp}</span>
           </div>
         </div>
       `;
-  } else {
+  } else if (data.recipient === currentUserID || data.recipient === "general") {
     chat.innerHTML += `
         <div class="container other-message">
           <img src="profile_pic.png" alt="Avatar"  style="width: 100%" />
           <div class="info">
           <strong class="username-text-left">${data.username}</strong>
           <p >${data.message}</p>
-          <span class="time-right">11:01</span>
+          <span class="time-right">${data.timestamp}</span>
           </div>
         </div>
       `;
   }
+
   chat.scrollTop = chat.scrollHeight;
 });
 
